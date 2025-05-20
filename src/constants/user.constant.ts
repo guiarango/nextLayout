@@ -1,0 +1,4 @@
+export const USER_DOCUMENT_MIN_LENGTH = 4;
+export const USER_DOCUMENT_MAX_LENGTH = 15;
+export const USER_PASSWORD_MIN_LENGTH = 6;
+export const USER_PASSWORD_MAX_LENGTH = 30;
