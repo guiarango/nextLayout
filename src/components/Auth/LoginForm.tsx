@@ -6,16 +6,17 @@ import {
   USER_DOCUMENT_MAX_LENGTH,
   USER_DOCUMENT_MIN_LENGTH,
 } from "@/constants/user.constant";
-import { ApiService } from "@/services/api.service";
 import { useUser } from "@/hooks/useUser";
 import {
   UserLoginRequest,
   UserLoginResponse,
   UserLoginResponseData,
 } from "@/interfaces/user/userLogin";
+import { ApiService } from "@/services/api.service";
+import { redirect } from "next/navigation";
 
 export default function LoginForm() {
-  const { state, dispatch } = useUser();
+  const { dispatch } = useUser();
 
   const minLength = USER_DOCUMENT_MIN_LENGTH;
   const maxLength = USER_DOCUMENT_MAX_LENGTH;
@@ -47,9 +48,19 @@ export default function LoginForm() {
 
     if (res.ok) {
       dispatch({
-        type: "LOGIN",
-        payload: payload,
+        type: "SET_USER",
+        payload: {
+          userDocument: payload.data.userDocument,
+          email: payload.data.email,
+          names: payload.data.names,
+          lastNames: payload.data.lastNames,
+          isActive: payload.data.isActive,
+          areas: payload.data.areas,
+          roles: payload.data.roles,
+          isOnline: true,
+        },
       });
+      redirect("/");
     }
   };
 

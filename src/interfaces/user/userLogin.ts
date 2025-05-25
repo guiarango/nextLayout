@@ -11,6 +11,7 @@ export interface User {
   isActive: boolean;
   areas: string[];
   roles: string[];
+  isOnline: boolean;
 }
 
 export interface UserLoginResponse {

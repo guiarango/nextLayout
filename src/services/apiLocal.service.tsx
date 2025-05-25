@@ -1,8 +1,6 @@
 import { JsonResponse } from "@/interfaces/common/json-response.interface";
 
-export class ApiService {
-  private readonly baseUrl: string =
-    `${process.env.NEXT_PUBLIC_BACKEND_SERVER_URL}/v1` || "";
+export class ApiLocalService {
   private headers: Record<string, string> = {
     Accept: "application/json",
   };
@@ -11,7 +9,7 @@ export class ApiService {
 
   public async get<T>(path: string, params?: any): Promise<JsonResponse<T>> {
     try {
-      const response = await fetch(`${this.baseUrl}${path}`, {
+      const response = await fetch(`${path}`, {
         method: "GET",
         headers: {
           ...this.headers,
@@ -45,7 +43,7 @@ export class ApiService {
         body = JSON.stringify(data);
       }
 
-      const response = await fetch(`${this.baseUrl}${path}`, {
+      const response = await fetch(`${path}`, {
         method: "POST",
         headers: { ...newHeaders },
         ...params,
@@ -77,7 +75,7 @@ export class ApiService {
         body = JSON.stringify(data);
       }
 
-      const response = await fetch(`${this.baseUrl}${path}`, {
+      const response = await fetch(`${path}`, {
         method: "PUT",
         headers: { ...newHeaders },
         ...params,
@@ -93,7 +91,7 @@ export class ApiService {
 
   public async delete<T>(path: string, params?: any): Promise<JsonResponse<T>> {
     try {
-      const response = await fetch(`${this.baseUrl}${path}`, {
+      const response = await fetch(`${path}`, {
         method: "DELETE",
         headers: { ...this.headers },
         ...params,

@@ -1,10 +1,9 @@
 "use client";
-import { User } from "@/interfaces/user/userLogin";
 import { createContext } from "react";
-import { UserAction } from "./userReducer";
+import { UserAction, UserState } from "./userReducer";
 
-type UserContextType = {
-  state: User;
+export type UserContextType = {
+  state: UserState;
   dispatch: React.Dispatch<UserAction>;
 };
 
